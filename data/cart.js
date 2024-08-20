@@ -55,3 +55,22 @@ export function removeFromCart(productId) {
 
     saveToStorage();
 }
+
+export function updateDeliveryOption(productId, deliveryOptionId) {
+    let matchingItem;
+
+    cart.forEach((cartItem) => {
+        if (productId === cartItem.productId) {
+            matchingItem = cartItem;
+        }
+    });
+
+    if (matchingItem) {
+        matchingItem.deliveryOptionId = deliveryOptionId;
+        saveToStorage();
+    } else {
+        console.error(`No matching item found in the cart for productId: ${productId}`);
+    }
+
+    saveToStorage();
+}
